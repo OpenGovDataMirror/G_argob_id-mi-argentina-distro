@@ -1,0 +1,66 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="language" content="Spanish"/>
+    <meta name="revisit" content="1 day"/>
+    <meta name="distribution" content="Global"/>
+    <meta name="robots" content="All"/>
+    <meta name="author" content=""/>
+
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+
+    <!-- Nav and address bar color -->
+    <meta name="theme-color" content="#0072b8">
+    <meta name="msapplication-navbutton-color" content="#0072b8">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0072b8">
+
+    <link href="{% static 'css/roboto-fontface.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/docs.css' %}" rel="stylesheet">
+    <link href="{% static 'css/icono-arg.css' %}" rel="stylesheet">
+    <link href="{% static 'css/poncho.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/miargentina.css' %}" rel="stylesheet">
+
+    {% block styles %}
+    {% endblock %}
+</head>
+
+{% if request.user.is_authenticated %}
+<body class="sticky-footer">
+{% else %}
+<body class="body-login">
+{% endif %}
+
+    {% block body %}
+    {% endblock %}
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <script type="text/javascript">
+        function getCookie(e)
+        {var t=null;if(document.cookie&&""!=document.cookie)for(var o=document.cookie.split(";"),n=0;n<o.length;n++)
+        {var r=jQuery.trim(o[n]);if(r.substring(0,e.length+1)==e+"="){t=decodeURIComponent(r.substring(e.length+1));break}}return t}
+        function csrfSafeMethod(e){return/^(GET|HEAD|OPTIONS|TRACE)$/.test(e)}var csrftoken=getCookie("csrftoken");
+        $.ajaxSetup({beforeSend:function(e,t){csrfSafeMethod(t.type)||this.crossDomain||e.setRequestHeader("X-CSRFToken",csrftoken)}});
+
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+    {% block script %}
+    {% endblock %}
+
+</body>
+</html>
